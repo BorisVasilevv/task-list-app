@@ -27,20 +27,16 @@ export const TaskList = ({ searchValue }) => {
     if (!tasks) {
         return null;
     }
-    let filteredTasks;
-    if (!searchValue) {
-        filteredTasks = tasks;
-    }
-    filteredTasks = filterTasks(tasks, searchValue);
+
+    const filteredTasks = filterTasks(tasks, searchValue);
 
     return (
         <Container>
             <TaskContainer>
                 {filteredTasks.map((task, index) => {
-                    return <Task key={index} name={task.name} />
+                    return <Task key={index} name={task.name}/>
                 })}
             </TaskContainer>
-
         </Container>
     );
 }

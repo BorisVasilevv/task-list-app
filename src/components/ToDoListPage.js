@@ -1,7 +1,7 @@
 import React from "react";
 import {useState} from 'react';
 import {TaskList} from "./TaskList";
-import {Alert} from './Alert/Alert'
+import {AddAlert} from './Alert/AddAlert'
 import { SearchRow } from "./Search";
 import {AddNewTask} from './AddTask/AddNewTaskElem'
 import styled from "styled-components";
@@ -23,9 +23,9 @@ function ToDoListPage() {
   return (
     <Container>
         <SearchRow onSearchChange={handleSearchInputChange}/>
-        <Alert title="Добавить">
+        <AddAlert>
           <AddNewTask/>
-        </Alert>
+        </AddAlert>
         <TaskList searchValue={searchValue}/>
     </Container>
   );

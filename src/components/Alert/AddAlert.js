@@ -21,7 +21,7 @@ const AddButton = styled.div`
     line-height: 20px;
 `;
 
-export const Alert = (props) => {
+export const AddAlert = (props) => {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const showAlertButtonClick = () => {
         setIsModalVisible(true)
@@ -38,7 +38,7 @@ export const Alert = (props) => {
 
         return (
             <Modal close={closeAlert}>
-                {props.children}
+                {props.children }
             </Modal>
         );
     }
@@ -47,7 +47,7 @@ export const Alert = (props) => {
         <>
             {renderModal()}
             <Container>
-                <AddButton onClick={showAlertButtonClick}>{props.title}</AddButton>
+                <AddButton onClick={showAlertButtonClick}>Добавить</AddButton>
             </Container>
         </>
     )
