@@ -16,6 +16,7 @@ export const AddNewTask = () => {
     const [name, setName] = useState('');
 
     const onInputChange = (event) => {
+        
         setName(event.nativeEvent.target.value);
     }
 
