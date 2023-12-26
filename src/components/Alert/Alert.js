@@ -14,7 +14,7 @@ const AddButton = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
+    border-radius: 5px;
     padding: 10px;
     text-align: center;
     font-size: 20px;
@@ -47,7 +47,7 @@ export const Alert = (props) => {
         <>
             {renderModal()}
             <Container>
-                <AddButton onClick={showAlertButtonClick}>+</AddButton>
+                <AddButton onClick={showAlertButtonClick}>{props.title}</AddButton>
             </Container>
         </>
     )
