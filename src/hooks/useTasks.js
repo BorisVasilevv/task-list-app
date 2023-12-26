@@ -1,33 +1,33 @@
 import {useMutation, useQuery, useQueryClient} from "react-query";
-import {PhoneActions} from "../dataActions/Phone";
+import {TaskActions} from "../dataActions/Task";
 
-export const usePhones = () => {
+export const useTasks = () => {
     const {data} = useQuery({
-        queryKey: 'phones',
-        queryFn: PhoneActions.getValue
+        queryKey: 'tasks',
+        queryFn: TaskActions.getValue
     });
     return {
-        phones: data,
+        tasks: data,
     }
 }
 
-export const useAddNewPhone = () => {
-    const {phones} = usePhones()
+export const useAddNewTask = () => {
+    const {tasks} = useTasks()
 
     const queryClient = useQueryClient();
     const {mutate} = useMutation({
-        mutationFn: (phone) => {
-            if (phones) {
-                const newPhonesArray = phones.concat([phone])
-                return PhoneActions.saveValue(newPhonesArray);
+        mutationFn: (task) => {
+            if (tasks) {
+                const newTasksArray = tasks.concat([task])
+                return TaskActions.saveValue(newTasksArray);
             }
         },
         onSuccess: () => {
-            queryClient.invalidateQueries('phones')
+            queryClient.invalidateQueries('tasks')
         }
     });
 
     return {
-        addNewPhone: mutate
+        addNewTask: mutate
     }
 }

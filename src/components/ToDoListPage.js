@@ -1,14 +1,14 @@
 import React from "react";
 import TaskList from "./TaskList";
 import {Alert} from './Alert/Alert'
-import {AddNewPhone} from './AddTask/AddNewTaskElem'
+import {AddNewTask} from './AddTask/AddNewTaskElem'
 
 function ToDoListPage() {
   return (
     <div>
         
         <Alert>
-          <AddNewPhone/>
+          <AddNewTask/>
         </Alert>
         <TaskList/>
     </div>

@@ -38,9 +38,7 @@ export const Alert = (props) => {
 
         return (
             <Modal close={closeAlert}>
-                <div>
-                    {props.children}
-                </div>
+                {props.children}
             </Modal>
         );
     }

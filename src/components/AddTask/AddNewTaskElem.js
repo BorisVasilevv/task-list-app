@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import {useState} from "react";
-import {useAddNewPhone} from "../../hooks/useTasks";
+import {useAddNewTask} from "../../hooks/useTasks";
 
 const Container = styled.div`
     display: flex;
@@ -10,8 +10,8 @@ const Container = styled.div`
     gap: 10px;
 `;
 
-export const AddNewPhone = () => {
-    const {addNewPhone: addNewPhoneToLS} = useAddNewPhone()
+export const AddNewTask = () => {
+    const {addNewTask: addNewTaskToLS} = useAddNewTask()
 
     const [name, setName] = useState('');
 
@@ -19,8 +19,8 @@ export const AddNewPhone = () => {
         setName(event.nativeEvent.target.value);
     }
 
-    const addNewPhone = () => {
-        addNewPhoneToLS({
+    const addNewTask = () => {
+        addNewTaskToLS({
             name
         });
     }
@@ -28,7 +28,7 @@ export const AddNewPhone = () => {
     return (
         <Container>
             <input value={name} onChange={onInputChange} placeholder={'Задача'} />
-            <button onClick={addNewPhone}>Сохранить</button>
+            <button onClick={addNewTask}>Сохранить</button>
         </Container>
     )
 }

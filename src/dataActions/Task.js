@@ -1,17 +1,17 @@
-export const PhoneActions = {
+export const TaskActions = {
     saveValue: (value) => {
         return new Promise((resolve, reject) => {
             let valueToSave = value;
             if (!value) {
                 valueToSave = [];
             }
-            localStorage.setItem('phones', JSON.stringify(valueToSave));
+            localStorage.setItem('tasks', JSON.stringify(valueToSave));
             resolve();
         })
     },
     getValue: () => {
         return new Promise((resolve, reject) => {
-            const savedValue = localStorage.getItem('phones');
+            const savedValue = localStorage.getItem('tasks');
             if (!savedValue) {
                 resolve([])
             } else
