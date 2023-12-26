@@ -31,3 +31,34 @@ export const useAddNewTask = () => {
         addNewTask: mutate
     }
 }
+
+
+export const useUpdateTask = () => {
+    const { tasks } = useTasks();
+
+    const queryClient = useQueryClient();
+    const { mutate } = useMutation({
+        mutationFn: (updatedTask) => {
+            if (tasks) {
+                const taskIndex = tasks.findIndex(task => task.id === updatedTask.id);
+                if (taskIndex >= 0) {
+                    const newTasksArray = [...tasks]; // копируем массив для иммутабельности
+                    newTasksArray[taskIndex] = updatedTask; // обновляем задачу
+                    return TaskActions.saveValue(newTasksArray);
+                }
+                throw new Error(`Task with id ${updatedTask.id} not found.`);
+            }
+        },
+        onSuccess: () => {
+            queryClient.invalidateQueries('tasks');
+        },
+        onError: (error) => {
+            // Обработка ошибки, например:
+            console.error('Error updating task:', error);
+        }
+    });
+
+    return {
+        updateTask: mutate
+    };
+};

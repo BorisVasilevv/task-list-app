@@ -21,7 +21,7 @@ const Input = styled.input`
 `;
 
 
-export const TaskList = ({ searchValue }) => {
+export const TaskList = ({ searchValue, onTaskClick }) => {
     const {tasks} = useTasks()
 
     if (!tasks) {
@@ -34,7 +34,8 @@ export const TaskList = ({ searchValue }) => {
         <Container>
             <TaskContainer>
                 {filteredTasks.map((task, index) => {
-                    return <Task key={index} name={task.name}/>
+                    // Передаем onTaskClick в Task
+                    return <Task key={index} task={task} onTaskClick={onTaskClick}/>
                 })}
             </TaskContainer>
         </Container>

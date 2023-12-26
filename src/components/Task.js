@@ -14,10 +14,10 @@ const Name = styled.div`
     font-weight: bold;
 `;
 
-export const Task = ({name}) => {
+export const Task = ({ task, onTaskClick }) => {
     return (
-        <Container>
-            <Name>{name}</Name>
+        <Container onClick={() => onTaskClick(task)}>
+            <Name>{task.name}</Name>
         </Container>
     );
 }
