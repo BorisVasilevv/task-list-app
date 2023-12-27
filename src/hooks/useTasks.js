@@ -1,5 +1,5 @@
 import {useMutation, useQuery, useQueryClient} from "react-query";
-import {getTodos, saveTodo, editTodoItem} from "../hep/taskitem"
+import {getTodos, saveTodo, editTodoItem, deleteTodoItem} from "../hep/taskitem"
 
 
 export const useTasks = () => {
@@ -30,7 +30,7 @@ export const useAddNewTask = () => {
 
 
 export const useUpdateTask = () => {
-    const { tasks } = useTasks();
+    // const { tasks } = useTasks();
 
     const queryClient = useQueryClient();
     const { mutate } = useMutation({
@@ -39,7 +39,6 @@ export const useUpdateTask = () => {
             queryClient.invalidateQueries('tasks');
         },
         onError: (error) => {
-            // Обработка ошибки, например:
             console.error('Error updating task:', error);
         }
     });
@@ -48,3 +47,18 @@ export const useUpdateTask = () => {
         updateTask: mutate
     };
 };
+
+
+export const useDeleteNewTask = () => {
+    const queryClient = useQueryClient();
+    const {mutate} = useMutation({
+        mutationFn: deleteTodoItem,
+        onSuccess: () => {
+            queryClient.invalidateQueries('tasks')
+        }
+    });
+
+    return {
+        addNewTask: mutate
+    }
+}

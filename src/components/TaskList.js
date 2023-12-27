@@ -21,20 +21,25 @@ const Input = styled.input`
 `;
 
 
-export const TaskList = ({ onTaskClick }) => {
+export const TaskList = ({ searchValue, onTaskClick }) => {
     const {tasks} = useTasks()
 
     if (!tasks) {
         return null;
     }
-
-    //const filteredTasks = filterTasks(tasks, searchValue);
+    let filteredTasks;
+    if(!searchValue){
+        filteredTasks = tasks
+    }
+    else{   
+        filteredTasks = filterTasks(tasks, searchValue);
+    } 
 
     return (
         <Container>
             <TaskContainer>
                 
-                {tasks.map((task, index) => {
+                {filteredTasks.map((task, index) => {
                     // Передаем onTaskClick в Task
                     return <Task key={task.id} task={task} onTaskClick={onTaskClick}/>
                 })}
@@ -43,9 +48,9 @@ export const TaskList = ({ onTaskClick }) => {
     );
 }
 
-// const filterTasks = (tasks, searchValue) => {
-//     return tasks.filter((el) => {
-//         const isNameMatch = el.name.toLowerCase().indexOf(searchValue.toLowerCase()) >= 0;
-//         return isNameMatch;
-//     });
-// }
+const filterTasks = (tasks, searchValue) => {
+    return tasks.filter((el) => {
+        const isNameMatch = el.name.toLowerCase().indexOf(searchValue.toLowerCase()) >= 0;
+        return isNameMatch;
+    });
+}

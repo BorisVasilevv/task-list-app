@@ -37,7 +37,6 @@ function ToDoListPage() {
   };
 
   const handleSaveTask = (id, newName) => { 
-    console.log(newName);
     const updatedTask = { id:editTask, name: newName };
     updateTask(updatedTask);
     setIsModalOpen(false);
@@ -49,7 +48,7 @@ function ToDoListPage() {
       <AddAlert>
         <AddNewTask/>
       </AddAlert>
-      <TaskList  onTaskClick={handleTaskClick}/>
+      <TaskList searchValue={searchValue} onTaskClick={handleTaskClick}/>
       <EditAlert
         task={editTask}
         isOpen={isModalOpen}

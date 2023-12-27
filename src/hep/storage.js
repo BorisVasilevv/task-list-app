@@ -1,5 +1,6 @@
 
 export const setTaskToStorage = (todos) => {
+    console.log(todos);
     localStorage.setItem('tasks', JSON.stringify(todos));
   }
   

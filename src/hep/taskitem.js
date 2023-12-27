@@ -54,38 +54,36 @@ export const saveTodo = (name) => {
 // }
 
 export const deleteTodoItem = (id) => {
-  let todos = getTasksFromStorage();
+    let todos = getTasksFromStorage();
 
-  todos = todos.filter(item => item.id !== id);
+    todos = todos.filter(item => item.id !== id);
 
-  setTaskToStorage(todos);
+    setTaskToStorage(todos);
 
-  return new Promise((resolve, reject) => {
-    const newTodos = getTasksFromStorage();
+    return new Promise((resolve, reject) => {
+        const newTodos = getTasksFromStorage();
 
-    resolve(newTodos);
-    reject("ОШИБКА В УДАЛЕНИИ БЛЯТЬ");
-  });
+        resolve(newTodos);
+    });
 }
 
 export const editTodoItem = (todoItem) => {
-  let todos = getTasksFromStorage();
+    console.log(todoItem);
+    let todos = getTasksFromStorage();
 
-  todos = todos.map(item => {
-    if (item.id === todoItem.id) {
-      item.name = todoItem.editedText;
-    }
+    todos = todos.map(item => {
+        if (item.id === todoItem.id) {
+            item.name = todoItem.name;
+        }
 
-    return item;
-  });
+        return item;
+    });
 
-  setTaskToStorage(todos);
+    setTaskToStorage(todos);
 
-  return new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
     const newTodos = getTasksFromStorage();
-
-    resolve(newTodos);
-    reject("ОШИБКА В РЕДАКТИРОВАНИИ БЛЯТЬ");
-  });
+        resolve(newTodos);
+    });
 }
 
