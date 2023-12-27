@@ -11,25 +11,22 @@ const Container = styled.div`
 `;
 
 export const AddNewTask = () => {
-    const {addNewTask: addNewTaskToLS} = useAddNewTask()
+    const {addNewTask} = useAddNewTask()
 
     const [name, setName] = useState('');
 
     const onInputChange = (event) => {
-        
         setName(event.nativeEvent.target.value);
     }
 
-    const addNewTask = () => {
-        addNewTaskToLS({
-            name
-        });
+    const addNewTask1 = () => {
+        addNewTask(name);
     }
 
     return (
         <Container>
             <input value={name} onChange={onInputChange} placeholder={'Задача'} />
-            <button onClick={addNewTask}>Сохранить</button>
+            <button onClick={addNewTask1}>Сохранить</button>
         </Container>
     )
 }

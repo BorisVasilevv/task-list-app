@@ -1,10 +1,11 @@
 import {useMutation, useQuery, useQueryClient} from "react-query";
-import {TaskActions} from "../dataActions/Task";
+import {getTodos, saveTodo, editTodoItem} from "../hep/taskitem"
+
 
 export const useTasks = () => {
     const {data} = useQuery({
         queryKey: 'tasks',
-        queryFn: TaskActions.getValue
+        queryFn: getTodos,
     });
     return {
         tasks: data,
@@ -16,12 +17,7 @@ export const useAddNewTask = () => {
 
     const queryClient = useQueryClient();
     const {mutate} = useMutation({
-        mutationFn: (task) => {
-            if (tasks) {
-                const newTasksArray = tasks.concat([task])
-                return TaskActions.saveValue(newTasksArray);
-            }
-        },
+        mutationFn: saveTodo,
         onSuccess: () => {
             queryClient.invalidateQueries('tasks')
         }
@@ -38,17 +34,7 @@ export const useUpdateTask = () => {
 
     const queryClient = useQueryClient();
     const { mutate } = useMutation({
-        mutationFn: (updatedTask) => {
-            if (tasks) {
-                const taskIndex = tasks.findIndex(task => task.id === updatedTask.id);
-                if (taskIndex >= 0) {
-                    const newTasksArray = [...tasks]; // копируем массив для иммутабельности
-                    newTasksArray[taskIndex] = updatedTask; // обновляем задачу
-                    return TaskActions.saveValue(newTasksArray);
-                }
-                throw new Error(`Task with id ${updatedTask.id} not found.`);
-            }
-        },
+        mutationFn: editTodoItem,
         onSuccess: () => {
             queryClient.invalidateQueries('tasks');
         },

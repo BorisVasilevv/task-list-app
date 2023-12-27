@@ -16,7 +16,7 @@ const Name = styled.div`
 
 export const Task = ({ task, onTaskClick }) => {
     return (
-        <Container onClick={() => onTaskClick(task)}>
+        <Container onClick={() => onTaskClick(task.id)}>
             <Name>{task.name}</Name>
         </Container>
     );

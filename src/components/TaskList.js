@@ -21,30 +21,31 @@ const Input = styled.input`
 `;
 
 
-export const TaskList = ({ searchValue, onTaskClick }) => {
+export const TaskList = ({ onTaskClick }) => {
     const {tasks} = useTasks()
 
     if (!tasks) {
         return null;
     }
 
-    const filteredTasks = filterTasks(tasks, searchValue);
+    //const filteredTasks = filterTasks(tasks, searchValue);
 
     return (
         <Container>
             <TaskContainer>
-                {filteredTasks.map((task, index) => {
+                
+                {tasks.map((task, index) => {
                     // Передаем onTaskClick в Task
-                    return <Task key={index} task={task} onTaskClick={onTaskClick}/>
+                    return <Task key={task.id} task={task} onTaskClick={onTaskClick}/>
                 })}
             </TaskContainer>
         </Container>
     );
 }
 
-const filterTasks = (tasks, searchValue) => {
-    return tasks.filter((el) => {
-        const isNameMatch = el.name.toLowerCase().indexOf(searchValue.toLowerCase()) >= 0;
-        return isNameMatch;
-    });
-}
+// const filterTasks = (tasks, searchValue) => {
+//     return tasks.filter((el) => {
+//         const isNameMatch = el.name.toLowerCase().indexOf(searchValue.toLowerCase()) >= 0;
+//         return isNameMatch;
+//     });
+// }
