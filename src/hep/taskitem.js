@@ -3,86 +3,65 @@
 import { setTaskToStorage, getTasksFromStorage } from './storage';
 
 
-export const getTodos = () => getTasksFromStorage();
+export const getTasks = () => getTasksFromStorage();
 
-export const saveTodo = (name) => {
-  const todos = getTasksFromStorage();
+export const saveTask = (name) => {
+  const task = getTasksFromStorage();
 
   let id = 0;
 
-  if (todos && todos.length > 0) {
-    id = todos[todos.length - 1].id + 1;
+  if (task && task.length > 0) {
+    id = task[task.length - 1].id + 1;
   }
 
-  const newTodo = {
+  const newTask = {
     name,
     id,
     // isChecked: false,
   }
 
-  todos.push(newTodo);
+  task.push(newTask);
 
-  setTaskToStorage(todos);
+  setTaskToStorage(task);
 
   return new Promise((resolve, reject) => {
-    const newTodos = getTasksFromStorage();
+    const newTask = getTasksFromStorage();
 
-    resolve(newTodos);
+    resolve(newTask);
     reject("ОШИБКА В СОХРАНЕНИИ БЛЯТЬ");
   });
 }
 
-// export const toggleTodoItem = (id) => {
-//   let todos = getTasksFromStorage();
+export const deleteTaskItem = (id) => {
+    let task = getTasksFromStorage();
 
-//   todos = todos.map(item => {
-//     if (item.id === id) {
-//       item.isChecked = !item.isChecked;
-//     }
+    task = task.filter(item => item.id !== id);
 
-//     return item;
-//   });
-
-//   setTaskToStorage(todos);
-
-//   return new Promise((resolve, reject) => {
-//     const newTodos = getTasksFromStorage();
-
-//     resolve(newTodos);
-//     reject("ОШИБКА В ИЗМЕНЕНИИ ПОЛЯ БЛЯТЬ");
-//   })
-// }
-
-export const deleteTodoItem = (id) => {
-    let todos = getTasksFromStorage();
-
-    todos = todos.filter(item => item.id !== id);
-
-    setTaskToStorage(todos);
+    setTaskToStorage(task);
 
     return new Promise((resolve, reject) => {
-        const newTodos = getTasksFromStorage();
+        const newTask = getTasksFromStorage();
 
-        resolve(newTodos);
+        resolve(newTask);
     });
 }
 
-export const editTodoItem = (todoItem) => {
-    let todos = getTasksFromStorage();
+export const editTaskItem = (taskItem) => {
+    let task = getTasksFromStorage();
 
-    todos = todos.map(item => {
-        if (item.id === todoItem.id) {
-            item.name = todoItem.name;
+    task = task.map(item => {
+        if (item.id === taskItem.id) {
+            item.name = taskItem.name;
         }
 
         return item;
     });
 
-    setTaskToStorage(todos);
+    setTaskToStorage(task);
 
     return new Promise((resolve, reject) => {
-    const newTodos = getTasksFromStorage();
-        resolve(newTodos);
+    const newTask = getTasksFromStorage();
+        resolve(newTask);
     });
 }
 
