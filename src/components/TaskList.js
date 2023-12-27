@@ -38,7 +38,6 @@ export const TaskList = ({ searchValue, onTaskClick }) => {
     return (
         <Container>
             <TaskContainer>
-                
                 {filteredTasks.map((task, index) => {
                     // Передаем onTaskClick в Task
                     return <Task key={task.id} task={task} onTaskClick={onTaskClick}/>

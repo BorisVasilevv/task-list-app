@@ -68,7 +68,6 @@ export const deleteTodoItem = (id) => {
 }
 
 export const editTodoItem = (todoItem) => {
-    console.log(todoItem);
     let todos = getTasksFromStorage();
 
     todos = todos.map(item => {

@@ -59,6 +59,6 @@ export const useDeleteNewTask = () => {
     });
 
     return {
-        addNewTask: mutate
+        deleteTask: mutate
     }
 }
